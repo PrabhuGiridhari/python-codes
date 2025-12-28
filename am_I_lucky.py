@@ -7,3 +7,5 @@ print ('''
  \__|_|  \___|\__,_|___/\__,_|_|  \___|_|___/_|\__,_|_| |_|\__,_|
 
        ''')
+
+print("Welcome to treasure hunt, come on lets test your luck")
