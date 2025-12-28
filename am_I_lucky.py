@@ -9,8 +9,21 @@ print (r'''
 print("Welcome to Treasure Island.\nYour mission is to find the treasure.")
 location = input ("Which would you like to go forest or city? \n").upper()
 if (location == "FOREST"):
-  print ("hi")
-if location != "CITY" or location != "FOREST":
-      print ("You got lost either goto forest or city")
+  crossing=(input("You arrived near a river!!\nYou wish to swim or walk accross\n").upper())
+  if crossing == "WALK":
+      door = input("Woff!! got away from corcodile and arrived at treasure door\n"
+      "Choose any one door RED/BLUE/GREEN\n").upper()
+      if door == "RED":
+          print ("Congradulation!!!! you won the treasure")
+      elif door == "GREEN":
+          print ("You Fell in to a fire pit, GameOver")
+      elif door == "BLUE":
+          print ("You were ate by lion, GameOver")
+      else:
+          print ("Select correct door!!, Start again")
 else:
-   print("You ran over a truck, you lost")
+    if location == "CITY":
+        print ("You ran over by truck, GameOver")
+    elif location != "CITY" or location != "FOREST":
+        print ("You got lost either goto forest or city")
+        
