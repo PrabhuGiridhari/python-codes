@@ -13,12 +13,21 @@ pepperoni = input("Do you want pepperoni on your pizza? Y or N: ")
 extra_cheese = input("Do you want extra cheese? Y or N: ")
 price = 0
 
-if size == "S" or size == "s":
-  price = 15
-  elif size == "M" or size == "m":
-    price = 20
-  elif size == "L" or size == "l":
-    price = 25
-  if pepperoni == "Y" or pepperoni == "y":
-    price += 2
-elif pepperoni == "Y" or pepperoni == "y":
+if size == 'S' or size == 's':
+    price += 15
+    if pepperoni == "Y" or pepperoni == "y":
+        price += 2
+    if extra_cheese == "Y" or extra_cheese == "y":
+        price += 1
+    print (f"Your final bill is: ₹{price}")
+
+else:
+    if size == 'M' or size == 'm':
+        price += 20
+    elif size == 'L' or size == 'l':
+        price += 25
+    if pepperoni == "Y" or pepperoni == "y":
+        price += 3
+    if extra_cheese == "Y" or extra_cheese == "y":
+        price += 1
+    print (f"Your final bill is: ₹{price}")
