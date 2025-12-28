@@ -20,10 +20,13 @@ if (location == "FOREST"):
       elif door == "BLUE":
           print ("You were ate by lion, GameOver")
       else:
-          print ("Select correct door!!, Start again")
+          print (f"There is no {door} door, open your eyes and Startover")
+  elif crossing == "SWIM":
+      print("Croc ate you, GameOver")
+  else:
+      print(f"Either Swim or Walk!!, you cannot {crossing} dude, Startover")
 else:
     if location == "CITY":
         print ("You ran over by truck, GameOver")
     elif location != "CITY" or location != "FOREST":
         print ("You got lost either goto forest or city")
-        
