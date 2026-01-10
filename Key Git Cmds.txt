@@ -1,0 +1,4 @@
+1. git pull #Sync Repository and local data
+2. git add . #Add a new code to cloud
+3. git commit -m "New code" #Save data to git by giving comments
+4. git push origin main #Sync data to git cloud 
