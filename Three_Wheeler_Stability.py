@@ -1,20 +1,31 @@
 # import time
 # import random
 import math
+from math import radians
+
+# Function to force user to provide valid inputs
+def valid_number(prompt,min_val,max_val):
+    while True:
+        user_input = input(prompt)
+        try:
+            user_val = int(user_input)
+            if min_val <= user_val <= max_val:
+                return user_val
+            else:
+                print ("Please enter a number between " + str(min_val) + " and " + str(max_val))
+        except ValueError:
+            print ("Please enter a number between " + str(min_val) + " and " + str(max_val))
 
 # input requirements to calculate stability
-try:
-    print ("Provide below values to calculate stability of given 3 wheeled vehicle")
-    wheel_track = int(input("Wheel Track in mm: ")) / 1000 #Value in mm > converted to meters
-    wheel_base = int(input("Wheel Base in mm: ")) / 1000 #Value in mm > converted to meters
-    cg_height = int(input("CoG from Ground (Z Dir) in mm: ")) / 1000 #Value in mm > converted to meters
-    tcd = int(input("TCD in m: "))
-    gravity = 9.81 #m/sec2
-    # print (wheel_base, wheel_track, cg_height)
-except ValueError as e:
-    print("Enter a numeric value :(")
-except ZeroDivisionError as k:
-    print("Zero cannot be taken into account :(")
+print ("Provide below values to calculate stability of given 3 wheeled vehicle")
+wheel_track = valid_number("Wheel Track in mm: ",1,2600) /1000 #Value in mm > converted to meters
+wheel_base = valid_number("Wheel Base in mm: ",1,18000) /1000 #Value in mm > converted to meters
+cg_height = valid_number("CoG from Ground (Z Dir) in mm: ",1,18000) /1000 #Value in mm > converted to meters
+handlebar_angle = valid_number("Handlebar input angle (values with in range 1~52\N{DEGREE SIGN}): ",1,52)
+gravity = 9.81 #m/sec2
+
+# Arriving TCD to Steering angle
+tcd = wheel_base / math.sin(radians(handlebar_angle))
 
 # Calculating Static Roll Over Stability
 def static_rollover_stability(a,b):
@@ -34,3 +45,5 @@ critical_lateral_acceleration = ssf * gravity #output value in m/sec2
 # Calculating Safe turning speed for your vehicle geometry
 safe_turning_speed = math.sqrt(critical_lateral_acceleration * tcd) * 3.6 # Multiply by 3.6 to convert m/sec2 to Km/h
 print (round(safe_turning_speed,1),"km/h")
+print (round(ssf,1),"g")
+print (round(tcd,1),"m")
