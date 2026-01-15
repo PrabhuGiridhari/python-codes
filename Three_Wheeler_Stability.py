@@ -22,6 +22,7 @@ wheel_track = valid_number("Wheel Track in mm: ",1,2600) /1000 #Value in mm > co
 wheel_base = valid_number("Wheel Base in mm: ",1,18000) /1000 #Value in mm > converted to meters
 cg_height = valid_number("CoG from Ground (Z Dir) in mm: ",1,18000) /1000 #Value in mm > converted to meters
 handlebar_angle = valid_number("Handlebar input angle (values with in range 1~52\N{DEGREE SIGN}): ",1,52)
+proposed_speed = valid_number("Proposed vehicle speed during turing:",1,60)
 gravity = 9.81 #m/sec2
 
 # Arriving TCD to Steering angle
@@ -44,6 +45,11 @@ critical_lateral_acceleration = ssf * gravity #output value in m/sec2
 
 # Calculating Safe turning speed for your vehicle geometry
 safe_turning_speed = math.sqrt(critical_lateral_acceleration * tcd) * 3.6 # Multiply by 3.6 to convert m/sec2 to Km/h
-print (round(safe_turning_speed,1),"km/h")
-print (round(ssf,1),"g")
-print (round(tcd,1),"m")
+if proposed_speed <= safe_turning_speed:
+    print(f"Your vehicle speed is {proposed_speed}, if u turn vehicle handle bar to {handlebar_angle}\N{DEGREE SIGN} angle")
+    print(f"you will experience {ssf}g & your vehicle is in safe stability")
+else:
+    print(f"Your vehicle speed is {proposed_speed}, if u turn handle bar to {handlebar_angle}\N{DEGREE SIGN} angle")
+    print(f"you will experience {ssf}g & Caution!!!! Vehicle will topple")
+
+input("Press ENTER to continue")# To pause and show the result
