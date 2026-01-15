@@ -16,6 +16,13 @@ except ZeroDivisionError as k:
     print("Zero cannot be taken into account :(")
 
 # Calculating Static Roll Over Stability
-def static_rollover_stability(wheel_track,cg_height):
-    ssf = wheel_track / (2*cg_height)
-    return print (f"Your Static Rollover Stability At Standstill / Low Speed is {ssf} ")
+def static_rollover_stability(a,b):
+    value = a / (2 * b)
+    return round(value,3)
+ssf = static_rollover_stability(wheel_track, cg_height)
+if ssf >= 1:
+    print(f"Your Static Rollover Stability value is {ssf}, Excellent. \nNote: Any value greater or equal to 1 is excellent")
+elif 0.8 <=ssf <= 1:
+    print(f"Your Static Rollover Stability value is {ssf}, Good. \nNote: Any value in between 0.8 ~ 0.99 is acceptable")
+else:
+    print(f"Your Static Rollover Stability value is {ssf}, Not Good. \nNote: Any value below 0.8 is at risk of rolling")
