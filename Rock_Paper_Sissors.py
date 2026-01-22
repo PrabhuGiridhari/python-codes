@@ -23,7 +23,7 @@ scissors = '''
           ______)
        __________)
       (____)
----.__(___)
+---.__(___) 
 '''
 
 print ("Do you have a dispute?, let's settle with Rock, Paper, Scissors")
