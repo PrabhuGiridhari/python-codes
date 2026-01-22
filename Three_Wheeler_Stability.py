@@ -13,7 +13,7 @@ def valid_number(prompt,min_val,max_val):
     while True:
         user_input = input(prompt)
         try:
-            user_val = int(user_input)
+            user_val = float(user_input)
             if min_val <= user_val <= max_val:
                 return user_val
             else:
@@ -31,7 +31,8 @@ proposed_speed = valid_number("Proposed vehicle speed during turing:",1,60)
 gravity = 9.81 #m/sec2
 
 # Arriving TCD to Steering angle
-tcd = 2* (wheel_base / math.sin(radians(handlebar_angle)))
+tcr = wheel_base / math.tan(radians(handlebar_angle))
+tcd = 2 * tcr
 
 # Calculating Static Roll Over Stability
 def static_rollover_stability(a,b):
@@ -52,7 +53,9 @@ else:
 critical_lateral_acceleration = ssf * gravity #output value in m/sec2
 
 # Calculating Safe turning speed for your vehicle geometry
-safe_turning_speed = math.sqrt(critical_lateral_acceleration * tcd) * 3.6 # Multiply by 3.6 to convert m/sec2 to Km/h
+safe_turning_speed = math.sqrt(critical_lateral_acceleration * tcr) * 3.6 # Multiply by 3.6 to convert m/sec2 to Km/h
+safe_turning_angle = wheel_base/(safe_turning_speed**2/critical_lateral_acceleration)
+
 if proposed_speed <= safe_turning_speed:
     print(f"{GREEN}Your vehicle speed is {proposed_speed}, if u turn vehicle handle bar to {handlebar_angle}\N{DEGREE SIGN} angle")
     print(f"{GREEN}You will experience {ssf}g & TCD of {round(tcd,2)}m. Your vehicle is in safe stability")
@@ -60,5 +63,6 @@ else:
     print(f"{RED}Your vehicle speed is {proposed_speed}, if u turn handle bar to {handlebar_angle}\N{DEGREE SIGN} angle")
     print(f"{RED}You will experience {ssf}g & Caution!!!! Vehicle will topple")
     print(f"{RED}Safe speed during turing {handlebar_angle}\N{DEGREE SIGN} is {round(safe_turning_speed,1)}")
+    print(f"Preferred steering angle for your current speed of {proposed_speed} is {round(safe_turning_angle,1)}degree")
 
 input(f"\n{WHITE}Press ENTER to continue")# To pause and show the result
