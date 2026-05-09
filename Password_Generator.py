@@ -11,14 +11,11 @@ nr_numbers = int(input(f"How many numbers would you like?\n"))
 pwd = []
 
 for i in range(nr_letters):
-    # print(random.choice(letters))
-    pwd.append(random.choice(letters))
+    pwd.append(random.choice(letters)) ## This is one option of adding in loops
 for j in range(nr_symbols):
-    # print(random.choice(letters))
-    pwd.append(random.choice(symbols))
+    pwd += random.choice(symbols)      ## This is other option of adding in loops
 for k in range(nr_numbers):
-    # print(random.choice(letters))
-    pwd.append(random.choice(numbers))
+    pwd += random.choice(numbers)
 
 random.shuffle(pwd)
 pwd = "".join(pwd)
